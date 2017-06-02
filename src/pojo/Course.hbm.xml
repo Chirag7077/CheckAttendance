@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate
+Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class catalog="checkattendance"
+	name="pojo.Course" table="course">
+		<id name="mCourseID" type="string">
+		<column length="10" name="CourseID"/>
+		</id>
+		<property name="mName" type="string">
+			<column length="50" name="Name"/>
+		</property>
+		<property name="mDateStarted" type="date">
+			<column length="10" name="DateStarted"/>
+		</property>
+		<property name="mDateFinished" type="date">
+			<column length="10" name="DateFinished"/>
+		</property>
+		<property name="mWeekday" type="integer">
+			<column name="Weekday"/>
+		</property>
+				<property name="mTimeStarted" type="time">
+		<column length="8" name="TimeStarted"/>
+		</property>
+				<property name="mTimeFinished" type="time">
+		<column length="8" name="TimeFinished"/>
+		</property>
+				<property name="mClassroom" type="string">
+		<column length="10" name="Classroom"/>
+		</property>
+		
+		<set inverse="true" name="mAttendances" 
+			fetch="join" lazy="false">
+		<key>
+			<column name="CourseID" not-null="true"/>
+		</key>
+		<one-to-many class="pojo.Attendance"/>
+		</set>
+	</class>
+</hibernate-mapping>

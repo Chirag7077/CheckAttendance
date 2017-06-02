@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate
+Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class catalog="checkattendance"
+	name="pojo.User" table="user">
+		<id name="mUsername" type="string">
+			<column length="10" name="UserID"/>
+		</id>
+		
+		<property name="mPassword" type="string">
+			<column length="50" name="Password"/>
+		</property>
+		
+		<property name="mFullname" type="string">
+			<column length="50" name="Fullname"/>
+		</property>
+		
+		<property name="mType" type="int">
+			<column name="Type"/>
+		</property>
+		
+		<set inverse="true" name="mAttendances" 
+			fetch="join" lazy="false">
+			<key>
+				<column name="StudentID" not-null="true"/>
+			</key>
+		<one-to-many class="pojo.Attendance"/>
+		</set>
+	</class>
+</hibernate-mapping>

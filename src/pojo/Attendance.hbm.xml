@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate
+Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class catalog="checkattendance"
+	name="pojo.Attendance" table="attendance">
+		<id name="mAttendanceID" type="integer">
+			<column name="AttendanceID"/>
+			<generator class="increment"/>
+		</id>
+		
+		<property name="mWeek" type="integer">
+			<column name="Week"/>
+		</property>
+		
+		<property name="mDate" type="date">
+			<column name="Date"/>
+		</property>
+		
+		<property name="mStatus" type="integer">
+			<column name="Status"/>
+		</property>
+		
+		<many-to-one class="pojo.User" name="mStudent" 
+			fetch="join" lazy="false" >
+			<column length="10" name="StudentID" not-null="true"/>
+		</many-to-one>
+		
+		<many-to-one class="pojo.Course" name="mCourse" 
+			fetch="join" lazy="false" >
+			<column length="10" name="CourseID" not-null="true"/>
+		</many-to-one>
+
+	</class>
+</hibernate-mapping>
